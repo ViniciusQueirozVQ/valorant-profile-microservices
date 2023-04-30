@@ -1,0 +1,38 @@
+version: '3'
+
+services:
+# Serviço Web do Nginx
+  web:
+    container_name: web
+    build:
+      context: ./web
+      dockerfile: Dockerfile
+    ports:
+      - '8000:80'
+    volumes:
+      - './web/html:/usr/share/nginx/html'
+  # Serviço do PostgreSQL
+  database:
+    container_name: database
+    image: postgres
+    environment:
+      POSTGRES_USER: ${DATABASE_USERNAME}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+      POSTGRES_DB: ${DATABASE_NAME}
+    ports:
+      - "8002:${DATABASE_PORT}"
+  # Serviço do Spring Boot
+  # O host 'database' se refere ao nome do servico do banco de dados, descrito acima
+  feeds:
+    container_name: feeds
+    build:
+      context: ./feeds
+      dockerfile: Dockerfile
+    environment:
+          - SPRING_DATASOURCE_URL=${DATABASE_JDBC_URL}:${DATABASE_PORT}/${DATABASE_NAME}
+          - SPRING_DATASOURCE_USERNAME=${DATABASE_USERNAME}
+          - SPRING_DATASOURCE_PASSWORD=${DATABASE_PASSWORD}
+    ports:
+      - "8001:8080"
+    depends_on:
+      - database

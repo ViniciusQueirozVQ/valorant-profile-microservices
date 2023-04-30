@@ -29,10 +29,10 @@ services:
   feeds:
     container_name: feeds
     build:
-      context: ./services/feeds
+      context: apis/feeds
       dockerfile: ../Dockerfile
     volumes:
-      - ./services/feeds/target:/app
+      - ./apis/feeds/target:/app
     command: [ "java", "-jar", "api.jar" ]
     environment:
       - SPRING_DATASOURCE_URL=${DATABASE_JDBC_URL}:${DATABASE_PORT}/${DATABASE_NAME}
@@ -45,10 +45,10 @@ services:
   detalhes:
     container_name: detalhes
     build:
-      context: ./services/detalhes
+      context: apis/detalhes
       dockerfile: ../Dockerfile
     volumes:
-      - ./services/detalhes/target:/app
+      - ./apis/detalhes/target:/app
     command: [ "java", "-jar", "api.jar" ]
     environment:
       - SPRING_DATASOURCE_URL=${DATABASE_JDBC_URL}:${DATABASE_PORT}/${DATABASE_NAME}

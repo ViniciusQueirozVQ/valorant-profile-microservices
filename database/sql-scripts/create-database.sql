@@ -1,4 +1,4 @@
-CREATE TABLE Personagem (
+CREATE TABLE personagem (
     id BIGSERIAL PRIMARY KEY,
     nome VARCHAR(30),
     nacionalidade VARCHAR(30),
@@ -6,7 +6,7 @@ CREATE TABLE Personagem (
     avatar VARCHAR(100)
 );
 
-CREATE TABLE DetalhesPersonagem (
+CREATE TABLE detalhes_personagem (
     id BIGSERIAL PRIMARY KEY,
     nome VARCHAR(30),
     descricao VARCHAR(300),

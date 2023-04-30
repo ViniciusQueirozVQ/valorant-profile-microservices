@@ -1,7 +1,7 @@
 version: '3'
 
 services:
-# Serviço Web do Nginx
+  # Serviço Web do Nginx
   web:
     container_name: web
     build:
@@ -23,7 +23,7 @@ services:
       POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
       POSTGRES_DB: ${DATABASE_NAME}
     ports:
-      - "8002:${DATABASE_PORT}"
+      - "8001:${DATABASE_PORT}"
   # Serviço do Spring Boot
   # O host 'database' se refere ao nome do servico do banco de dados, descrito acima
   feeds:
@@ -33,12 +33,28 @@ services:
       dockerfile: ../Dockerfile
     volumes:
       - ./services/feeds/target:/app
-    command: ["java", "-jar", "api.jar"]
+    command: [ "java", "-jar", "api.jar" ]
     environment:
-          - SPRING_DATASOURCE_URL=${DATABASE_JDBC_URL}:${DATABASE_PORT}/${DATABASE_NAME}
-          - SPRING_DATASOURCE_USERNAME=${DATABASE_USERNAME}
-          - SPRING_DATASOURCE_PASSWORD=${DATABASE_PASSWORD}
+      - SPRING_DATASOURCE_URL=${DATABASE_JDBC_URL}:${DATABASE_PORT}/${DATABASE_NAME}
+      - SPRING_DATASOURCE_USERNAME=${DATABASE_USERNAME}
+      - SPRING_DATASOURCE_PASSWORD=${DATABASE_PASSWORD}
     ports:
-      - "8001:8080"
+      - "8002:8080"
+    depends_on:
+      - database
+  detalhes:
+    container_name: detalhes
+    build:
+      context: ./services/detalhes
+      dockerfile: ../Dockerfile
+    volumes:
+      - ./services/detalhes/target:/app
+    command: [ "java", "-jar", "api.jar" ]
+    environment:
+      - SPRING_DATASOURCE_URL=${DATABASE_JDBC_URL}:${DATABASE_PORT}/${DATABASE_NAME}
+      - SPRING_DATASOURCE_USERNAME=${DATABASE_USERNAME}
+      - SPRING_DATASOURCE_PASSWORD=${DATABASE_PASSWORD}
+    ports:
+      - "8003:8080"
     depends_on:
       - database

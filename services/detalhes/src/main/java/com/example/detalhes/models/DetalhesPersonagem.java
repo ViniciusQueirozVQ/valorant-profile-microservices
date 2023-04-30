@@ -1,4 +1,4 @@
-package com.example.feeds.models;
+package com.example.detalhes.models;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -12,21 +12,19 @@ import java.util.Objects;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "personagem")
-public class Personagem {
+@Table(name = "detalhes_personagem")
+public class DetalhesPersonagem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
-    private String nacionalidade;
-    private String classe;
-    private String avatar;
+    private String descricao;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        Personagem that = (Personagem) o;
+        DetalhesPersonagem that = (DetalhesPersonagem) o;
         return getId() != null && Objects.equals(getId(), that.getId());
     }
 

@@ -15,7 +15,7 @@ public class PersonagemController {
     @Autowired
     private PersonagemRepository repository;
 
-    public ResponseEntity<Page<Personagem>> listar(@PageableDefault(size = 10, sort = {"nome"}) Pageable paginacao) {
+    public ResponseEntity<Page<Personagem>> listar(@PageableDefault(size = 5, sort = {"nome"}) Pageable paginacao) {
         Page<Personagem> personagems = repository.findAll(paginacao);
 
         if(personagems.isEmpty())

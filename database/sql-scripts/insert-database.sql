@@ -1,4 +1,4 @@
-INSERT INTO personagem (nome, nacionalidade, classe, avatar)
+INSERT INTO Personagem (nome, nacionalidade, classe, avatar)
 VALUES
     ('Jett', 'COREIA DO SUL', 'DUELISTA', 'assets/avatars/jett.png'),
     ('Viper', 'ESTADOS UNIDOS', 'CONTROLADOR', 'assets/avatars/viper.png'),

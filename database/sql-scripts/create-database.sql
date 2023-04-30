@@ -8,7 +8,8 @@ CREATE TABLE Personagem (
 
 CREATE TABLE DetalhesPersonagem (
     id BIGSERIAL PRIMARY KEY,
-    descricao VARCHAR(100),
+    nome VARCHAR(30),
+    descricao VARCHAR(300),
     fk_personagem_id BIGINT,
     FOREIGN KEY (fk_personagem_id) REFERENCES Personagem (id) ON DELETE CASCADE
 );

@@ -31,6 +31,9 @@ services:
     build:
       context: ./services/feeds
       dockerfile: ../Dockerfile
+    volumes:
+      - ./services/feeds/target:/app
+    command: ["java", "-jar", "api.jar"]
     environment:
           - SPRING_DATASOURCE_URL=${DATABASE_JDBC_URL}:${DATABASE_PORT}/${DATABASE_NAME}
           - SPRING_DATASOURCE_USERNAME=${DATABASE_USERNAME}

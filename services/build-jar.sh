@@ -1,1 +1,1 @@
-./feeds/mvnw install -DskipTests feeds/
+./mvnw install -DskipTests

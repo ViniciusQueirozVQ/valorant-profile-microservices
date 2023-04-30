@@ -15,6 +15,9 @@ services:
   database:
     container_name: database
     image: postgres
+    volumes:
+      - ./database/sql-scripts/create-database.sql:/docker-entrypoint-initdb.d/create-database.sql
+      - ./database/sql-scripts/insert-database.sql:/docker-entrypoint-initdb.d/insert-database.sql
     environment:
       POSTGRES_USER: ${DATABASE_USERNAME}
       POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
@@ -26,8 +29,8 @@ services:
   feeds:
     container_name: feeds
     build:
-      context: ./feeds
-      dockerfile: Dockerfile
+      context: ./services/feeds
+      dockerfile: ../Dockerfile
     environment:
           - SPRING_DATASOURCE_URL=${DATABASE_JDBC_URL}:${DATABASE_PORT}/${DATABASE_NAME}
           - SPRING_DATASOURCE_USERNAME=${DATABASE_USERNAME}

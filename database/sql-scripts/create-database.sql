@@ -11,5 +11,5 @@ CREATE TABLE detalhes_personagem (
     nome VARCHAR(30),
     descricao VARCHAR(300),
     fk_personagem_id BIGINT,
-    FOREIGN KEY (fk_personagem_id) REFERENCES Personagem (id) ON DELETE CASCADE
+    FOREIGN KEY (fk_personagem_id) REFERENCES personagem (id) ON DELETE CASCADE
 );

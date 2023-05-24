@@ -17,7 +17,7 @@ public class DetalhesPersonagemController {
     @Autowired
     private DetalhesPersonagemRepository repository;
 
-    @GetMapping(path = {"id"})
+    @GetMapping(path = {"/{id}"})
     public ResponseEntity<DetalhesPersonagem> detalhar(@PathVariable("id") Long id) {
         Optional<DetalhesPersonagem> detalhes = repository.findById(id);
 

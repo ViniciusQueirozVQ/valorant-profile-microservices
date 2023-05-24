@@ -19,7 +19,6 @@ public class PersonagemController {
     @GetMapping
     public ResponseEntity<Page<Personagem>> listar(@PageableDefault(size = 5, sort = {"nome"}) Pageable paginacao) {
         Page<Personagem> personagems = repository.findAll(paginacao);
-
         if(personagems.isEmpty())
             return ResponseEntity.notFound().build();
 

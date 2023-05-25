@@ -17,7 +17,7 @@ class APITest(unittest.TestCase):
 
     def test_deve_retornar_sucesso_se_status_not_found(self):
             response = requests.get(URL_DETALHES + '/99')
-            self.assertEqual(response.status_code, 404, "A resposta não é 200")
+            self.assertEqual(response.status_code, 404, "A resposta não é 404")
 
 if __name__ == '__main__':
     unittest.main()

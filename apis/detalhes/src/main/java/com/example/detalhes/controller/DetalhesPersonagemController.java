@@ -19,7 +19,7 @@ public class DetalhesPersonagemController {
 
     @GetMapping(path = {"/{id}"})
     public ResponseEntity<DetalhesPersonagem> detalhar(@PathVariable("id") Long id) {
-        Optional<DetalhesPersonagem> detalhes = repository.findById(id);
+        Optional<DetalhesPersonagem> detalhes = repository.findByPersonagemId(id);
 
         if (detalhes.isEmpty())
             return ResponseEntity.notFound().build();

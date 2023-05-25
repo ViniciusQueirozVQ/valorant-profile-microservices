@@ -17,8 +17,13 @@ public class DetalhesPersonagem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String nome;
+
     private String descricao;
+
+    @Column(name="fk_personagem_id")
+    private Long personagemId;
 
     @Override
     public boolean equals(Object o) {
